@@ -1,0 +1,21 @@
+import pandas as pd
+uselog = pd.read_csv("trip_data.csv")
+#uselog.head()
+uselog_new = uselog[["age","people","money"]]
+uselog_money = uselog_new.groupby(["age","people"]).agg(["mean"])["money"]
+uselog_money = uselog_money.reset_index(drop=False)
+uselog_moneyAge = uselog_money.groupby("age").agg("mean")
+uselog_moneyAge = uselog_moneyAge.reset_index(drop=False)
+uselog_moneyPeople = uselog_money.groupby("people").agg("mean")
+uselog_moneyPeople = uselog_moneyPeople.reset_index(drop=False)
+print("-------------------------------------------------------------------")
+print(uselog.head())
+print("-------------------------------------------------------------------")
+print(uselog_new.head())
+print("-------------------------------------------------------------------")
+print(uselog_money.head())
+print("-------------------------------------------------------------------")
+print(uselog_moneyAge)
+print("-------------------------------------------------------------------")
+print(uselog_moneyPeople)
+print("-------------------------------------------------------------------")
